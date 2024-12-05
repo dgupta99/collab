@@ -1,7 +1,10 @@
-# tests/test_main.py
-
+import unittest
 from main import greet
 
-def test_greet():
-    assert greet("Alice") == "Hello, Alice!"
-    assert greet("Bob") == "Hello, Bob!"
+class TestMain(unittest.TestCase):
+    def test_greet(self):
+        self.assertEqual(greet("Alice"), "Hello, Alice!")
+        self.assertEqual(greet("Bob"), "Hello, Bob!")
+
+if __name__ == "__main__":
+    unittest.main()
