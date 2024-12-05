@@ -60,4 +60,4 @@ jobs:
  
       - name: Deploy to Firebase 
         run: | 
-          firebase deploy --only functions
+          firebase deploy --only hosting
