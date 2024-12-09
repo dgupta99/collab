@@ -42,16 +42,16 @@ jobs:
       - name: Install Firebase CLI
         run: |
           curl -sL https://firebase.tools | bash
-      # Authenticate with Firebase using the service account JSON key
+
       - name: Authenticate Firebase with Service Account
         env:
-          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}  # Secret containing Firebase service account JSON key
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
         run: |
-# Save the service account key to a file
+
           echo "$FIREBASE_SERVICE_ACCOUNT" > $HOME/firebase-service-account.json
-          # Set the GOOGLE_APPLICATION_CREDENTIALS environment variable for Firebase CLI
+
           export GOOGLE_APPLICATION_CREDENTIALS="$HOME/firebase-service-account.json"
-          # Authenticate with Firebase
-          firebase use --add  # This will automatically set up the correct Firebase project for the deployment
+
+          firebase use --add  
       - name: Deploy to Firebase Hosting
         run: firebase deploy --only hosting
