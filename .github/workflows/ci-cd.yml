@@ -53,6 +53,7 @@ jobs:
       - name: Install Firebase CLI
         run: |
           curl -sL https://firebase.tools | bash
+          
       - name: Authenticate Firebase with Service Account
         env:
           FIREBASE_CREDENTIALS: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
