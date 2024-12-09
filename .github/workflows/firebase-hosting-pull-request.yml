@@ -49,14 +49,20 @@ jobs:
       - name: Install Firebase CLI
         run: |
           curl -sL https://firebase.tools | bash
-
-      - name: Authenticate with Firebase
+      - name: Authenticate Firebase
         env:
-          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-        run: |
-          echo $FIREBASE_SERVICE_ACCOUNT > $HOME/firebase-key.json
-          gcloud auth activate-service-account --key-file=$HOME/firebase-key.json
-          gcloud config set project ${{ secrets.FIREBASE_PROJECT_ID }}
+          FIREBASE_CREDENTIALS: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}  
+      # Use the secret stored in GitHub
+        run: | 
+          echo "$FIREBASE_CREDENTIALS" > $HOME/firebase-key.json
+          firebase login:ci --token $(cat $HOME/firebase-key.json)
+      # - name: Authenticate with Firebase
+      #   env:
+      #     FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      #   run: |
+      #     echo $FIREBASE_SERVICE_ACCOUNT > $HOME/firebase-key.json
+      #     gcloud auth activate-service-account --key-file=$HOME/firebase-key.json
+      #     gcloud config set project ${{ secrets.FIREBASE_PROJECT_ID }}
 
       - name: Deploy to Firebase Hosting
         run: firebase deploy --only hosting

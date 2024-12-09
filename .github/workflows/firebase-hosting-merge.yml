@@ -32,8 +32,8 @@ jobs:
           FIREBASE_CREDENTIALS: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}  
       # Use the secret stored in GitHub
         run: | 
-          echo "$FIREBASE_CREDENTIALS" > $HOME/.firebase/credentials.json
-          firebase login:ci --token $(cat $HOME/.firebase/credentials.json)
+          echo "$FIREBASE_CREDENTIALS" > $HOME/firebase-key.json
+          firebase login:ci --token $(cat $HOME/firebase-key.json)
       # - name: Authenticate with Firebase
       #   env:
       #     FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
