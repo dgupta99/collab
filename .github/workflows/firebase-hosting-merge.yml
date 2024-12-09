@@ -25,11 +25,11 @@ jobs:
         env:
           FIREBASE_CREDENTIALS: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
         run: |
-          # Create a temporary file for the Firebase service account JSON key
+#Create a temporary file for the Firebase service account JSON key
           echo "$FIREBASE_CREDENTIALS" > $HOME/firebase-service-account.json
-          # Set the GOOGLE_APPLICATION_CREDENTIALS environment variable for Firebase CLI
+      # Set the GOOGLE_APPLICATION_CREDENTIALS environment variable for Firebase CLI
           export GOOGLE_APPLICATION_CREDENTIALS="$HOME/firebase-service-account.json"
-          # Authenticate Firebase CLI using the service account
+      # Authenticate Firebase CLI using the service account
           firebase use --add  # This will automatically use the correct Firebase project
       # Step 5: Deploy to Firebase Hosting
       - name: Deploy to Firebase Hosting
