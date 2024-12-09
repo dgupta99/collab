@@ -47,7 +47,7 @@ jobs:
         env:
           FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}  # Secret containing Firebase service account JSON key
         run: |
-          # Save the service account key to a file
+# Save the service account key to a file
           echo "$FIREBASE_SERVICE_ACCOUNT" > $HOME/firebase-service-account.json
           # Set the GOOGLE_APPLICATION_CREDENTIALS environment variable for Firebase CLI
           export GOOGLE_APPLICATION_CREDENTIALS="$HOME/firebase-service-account.json"
