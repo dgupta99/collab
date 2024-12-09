@@ -52,6 +52,6 @@ jobs:
 
           export GOOGLE_APPLICATION_CREDENTIALS="$HOME/firebase-service-account.json"
 
-          firebase use --add  
+          firebase use game-9761f  
       - name: Deploy to Firebase Hosting
         run: firebase deploy --only hosting
